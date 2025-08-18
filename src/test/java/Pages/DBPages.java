@@ -37,12 +37,8 @@ public class DBPages {
     @FindBy(xpath = "//a[@href='https://qa.loyalfriendcare.com/en/password/reset']")
     public WebElement forgotPasswordButton ;
 
-
-
-    
-
-
-
+    // < -- === KOD İÇİNDE FAZLALIK OLMASIN DİYE === -- >
+    // < -- === FARKLI ATTİRİBUTE LERLE XPATH TEKRAR ALINDI === -- >
 
 
     @FindBy(xpath = "(//a[@class='btn_add'])[1]")

@@ -134,6 +134,8 @@ public class LFCPages {
    public WebElement searchResultElementi ;
 
     //<-- ========== Body locaters ============ -->
+    // < -- === BÜTÜN BODY KISMINDA EKLENEN BUTTONLAR İÇİN === -->
+    // < -- === LOCATE KAYMASINI ENGELLEYİCİ XPATH LER === -- >
 
     @FindBy(xpath = "//*[normalize-space(text())='Wellness']") //21
     public WebElement wellnessButton;
@@ -167,13 +169,13 @@ public class LFCPages {
 
     // <-- ==============Body mini buttons ================ -->
     @FindBy(xpath = "(//a[@href='https://qa.loyalfriendcare.com/Departments'])[2]") //31
-    public WebElement miniDepartmentsButton ;
+    public WebElement miniDepartmentsButton ; // LİNKSİZ XPATH ALINABİLİR
 
     @FindBy(xpath = "(//a[@href='https://qa.loyalfriendcare.com/Doctors'])[2]") //32
-    public WebElement miniDoctorsButton ;
+    public WebElement miniDoctorsButton ; // LİNKSİZ XPATH ALINABİLİR
 
     @FindBy(xpath = "(//a[@href='https://qa.loyalfriendcare.com/Pets'])[2]") //33
-    public WebElement miniMainVaccinationsButton ;
+    public WebElement miniMainVaccinationsButton ; // LİNKSİZ XPATH ALINABİLİR
 
     // <-- =============Footer DepartmentsButtons ============= -->
 
