@@ -1,10 +1,7 @@
 package User_Test;
 
-import Pages.DBPages;
-import org.openqa.selenium.By;
+import Pages.AdminPages;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 import utilities.*;
 
@@ -15,59 +12,59 @@ public class US_038 {
     @Test
     public void TC_01(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        DBPages dbPages = new DBPages() ;
-        dbPages.signInButton.click();
-        dbPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        dbPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        dbPages.loginPageSignInButton.click();
-        dbPages.accountButton.click();
-        dbPages.dashBoard.click();
-        dbPages.petsAdsenseButton.click();
-        dbPages.createPetAdSenseButton.click();
+        AdminPages adminPages = new AdminPages() ;
+        adminPages.signInButton.click();
+        adminPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        adminPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        adminPages.loginPageSignInButton.click();
+        adminPages.accountButton.click();
+        adminPages.dashBoard.click();
+        adminPages.petsAdsenseButton.click();
+        adminPages.createPetAdSenseButton.click();
 
-        dbPages.addForumLocationButtons.click();
-        dbPages.addForumFieldBox.sendKeys("Header"+Keys.ENTER);
+        adminPages.addForumLocationButtons.click();
+        adminPages.addForumFieldBox.sendKeys("Header"+Keys.ENTER);
 
-        dbPages.addForumPetTitle.sendKeys("lililili");
+        adminPages.addForumPetTitle.sendKeys("lililili");
 
-        dbPages.addForumDisplayName.sendKeys("KEDİLERİ SEVERİZ");
-        dbPages.addForumRadioButton.click();
+        adminPages.addForumDisplayName.sendKeys("KEDİLERİ SEVERİZ");
+        adminPages.addForumRadioButton.click();
 
-        dbPages.addForumTypeButton.click();
+        adminPages.addForumTypeButton.click();
 
-        dbPages.addForumTypeBox.sendKeys("Code" +Keys.ENTER);
+        adminPages.addForumTypeBox.sendKeys("Code" +Keys.ENTER);
 
-        dbPages.addForumImageButton.click();
+        adminPages.addForumImageButton.click();
 
         ReusableMethods.bekle(1);
         ReusableMethods.scrollToBottom();
 
 
 
-        dbPages.addForumImageUrlBox.sendKeys("https://images.app.goo.gl/CkTiMnWUD13iv4ew8");
+        adminPages.addForumImageUrlBox.sendKeys("https://images.app.goo.gl/CkTiMnWUD13iv4ew8");
 
-        dbPages.addForumAdSenseButton.click();
+        adminPages.addForumAdSenseButton.click();
 
         ReusableMethods.scrollToBottom();
 
-       dbPages.addForumTextBox.sendKeys("DJHUIOJHJOI");
+       adminPages.addForumTextBox.sendKeys("DJHUIOJHJOI");
 
        ReusableMethods.scrollToBottom();
        ReusableMethods.bekle(1);
 
 
-        dbPages.addForumSaveButton.click();
+        adminPages.addForumSaveButton.click();
 
         ReusableMethods.bekle(2);
 
-        dbPages.dashBoard.click();
-        dbPages.petsAdsenseButton.click();
+        adminPages.dashBoard.click();
+        adminPages.petsAdsenseButton.click();
 
-        dbPages.subPetAdsenseButton.click();
+        adminPages.subPetAdsenseButton.click();
         ReusableMethods.bekle(1);
 
 
-        dbPages.addSenseDeleteButton.click();
+        adminPages.deleteButton.click();
 
     }
 

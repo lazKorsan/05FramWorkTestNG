@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.DBPages;
+import Pages.AdminPages;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -17,14 +17,14 @@ public class US_039 {
     @Test
     public void TC_01(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        DBPages dbPages = new DBPages() ;
-        dbPages.signInButton.click();
-        dbPages.mailBox.sendKeys("admin.ahmet@loyalfriendcare.com");
-        dbPages.passwordBox.sendKeys("LFCare.0201");
-        dbPages.loginPageSignInButton.click();
-        dbPages.accountButton.click();
-        dbPages.dashBoard.click();
-        dbPages.vaccinationsButton.click();
+        AdminPages adminPages = new AdminPages() ;
+        adminPages.signInButton.click();
+        adminPages.mailBox.sendKeys("admin.ahmet@loyalfriendcare.com");
+        adminPages.passwordBox.sendKeys("LFCare.0201");
+        adminPages.loginPageSignInButton.click();
+        adminPages.accountButton.click();
+        adminPages.dashBoard.click();
+        adminPages.vaccinationsButton.click();
         ReusableMethods.bekle(1);
         ReusableMethods.printProductsInCategory(Driver.getDriver(),
                 "https://qa.loyalfriendcare.com/en/Dashboard/Galleries?page=1",

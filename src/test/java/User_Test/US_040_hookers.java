@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import utilities.*;
 
 public class US_040_hookers {
-    LFCPages lfcPages = new LFCPages();
+    HeaderPages headerPages = new HeaderPages();
     //Bir yönetici olarak,
     // yeni bir aşı ekleyebilmeli ve
     // bu aşıyı mevcut aşılar listesine kaydedebilmeliyim.
@@ -16,14 +16,14 @@ public class US_040_hookers {
     @Test
     public void hk1_(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
 
         System.out.println("roles locaters");
@@ -67,32 +67,32 @@ public class US_040_hookers {
 
         Driver.getDriver().navigate().back();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         roles.click();
         createUserButton.click();
         ReusableMethods.bekle(2);
 
         Driver.getDriver().navigate().back();
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         usersButton.click();
         subUsersButton.click();
         ReusableMethods.bekle(2);
         Driver.getDriver().navigate().back();
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         usersButton.click();
         createUserButton.click();
     }
     @Test
     public void dashboardlocaters(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
 
 
@@ -357,14 +357,14 @@ public class US_040_hookers {
         // < -- ==== ROLESBUTTONS
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
         //dbRolesButton,
 
@@ -400,14 +400,14 @@ public class US_040_hookers {
         //<-- === USERSBUTTONS
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
 
         // < -- USERSBUTTONS
@@ -439,14 +439,14 @@ public class US_040_hookers {
         // < -- === DEPARTMENTS BUTTONS
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
         // <--========= DEPARTMENTS BUTTONS
         System.out.println("dbDepartmentsButton");
@@ -479,14 +479,14 @@ public class US_040_hookers {
         // < -- === DOCTORS BUTTONS
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
         // < -- === DOCTORS BUTTONS
         System.out.println("dbDoctorsButton");
@@ -519,14 +519,14 @@ public class US_040_hookers {
 
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
         // < -- MEDİCİNES BUTTONS
         System.out.println("MEDİSCİNES");
@@ -553,14 +553,14 @@ XPathGenerator.printXpathFormulas(subMedicinesButton);
     public void hk_08(){
         // < -- === PETADSENSE BUTTONS
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
         // < -- === PATH ADSENS BUTTONS
         System.out.println("pathAdsenseButtons");
@@ -587,14 +587,14 @@ XPathGenerator.printXpathFormulas(subMedicinesButton);
 
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
          WebElement dbTicketsButton =Driver.getDriver().findElement(By.xpath("//span[text()='Tickets']")) ;
 
@@ -608,14 +608,14 @@ XPathGenerator.printXpathFormulas(subMedicinesButton);
         // < -- === VACCİNATİONS BUTTONS
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
-        lfcPages.dashBoard.click();
+        headerPages.dashBoard.click();
         ReusableMethods.bekle(2);
 
         // < -- === VACCİNATİONS BUTTONS

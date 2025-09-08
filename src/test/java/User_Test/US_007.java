@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,24 +13,24 @@ public class US_007 {
     // üye kayıt formuna erisebilmek
     // ve üye kayıt formunu doldurup
     // kaydımı tamamlayabilmek istiyorum. (signUp)
-    LFCPages lfcPages = new LFCPages() ;
+    HeaderPages headerPages = new HeaderPages() ;
     @BeforeMethod
     public void setUp() {
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages = new LFCPages();}
+        headerPages = new HeaderPages();}
     @AfterMethod
     public void tearDown(){
         Driver.quitDriver();
     }
     @Test
     public void TC_01(){
-        lfcPages.signUpButton.click();
-        lfcPages.userNameBox.sendKeys("alfaRomeo3");
-        lfcPages.mailBox.sendKeys("alfaromeo3@gmail.com");
-        lfcPages.passwordBox.sendKeys("alfaRomeo123.");
-        lfcPages.confirmPasswordBox.sendKeys("alfaRomeo123.");
+        headerPages.signUpButton.click();
+        headerPages.userNameBox.sendKeys("alfaRomeo3");
+        headerPages.mailBox.sendKeys("alfaromeo3@gmail.com");
+        headerPages.passwordBox.sendKeys("alfaRomeo123.");
+        headerPages.confirmPasswordBox.sendKeys("alfaRomeo123.");
         ReusableMethods.bekle(12);
-        lfcPages.registerButton.click();
+        headerPages.registerButton.click();
 
         ReusableMethods.bekle(15);
 

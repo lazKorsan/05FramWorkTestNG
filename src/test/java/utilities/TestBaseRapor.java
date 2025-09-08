@@ -57,9 +57,10 @@ public abstract class TestBaseRapor {
 
 
     // Raporlandırmayı sonlandırmak icin
+    // < -- === çoklu testler için driver kapatmıyoruz
     @AfterTest(alwaysRun = true)
     public void tearDownTest() {
 
-        extentReports.flush();
-    }
-}
+       extentReports.flush();
+    }}
+    //< -- ===== çoklu test için burası kaldırıldı

@@ -1,6 +1,6 @@
 package tests.loyalfriendcare;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -14,9 +14,9 @@ public class X11_DoctorsPageXpath {
     public void doctorspageXpathTesti(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
 
-        LFCPages lfcPages = new LFCPages() ;
+        HeaderPages headerPages = new HeaderPages() ;
 
-        lfcPages.doctorsButton.click();
+        headerPages.doctorsButton.click();
 
         WebElement drAlejandroMartinezButton =Driver.getDriver().findElement(By.xpath("(//img[@class='img-fluid'])[1]")) ;
         ReusableMethods.getWebElementScreenshot(drAlejandroMartinezButton,"drAlejandroMartinezButton");

@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -14,16 +14,16 @@ public class US_041 {
     public void TC_01(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
 
-        LFCPages lfcPages = new LFCPages() ;
+        HeaderPages headerPages = new HeaderPages() ;
 
-        lfcPages.signInButton.click();
+        headerPages.signInButton.click();
 
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("userMail"));
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("userMail"));
 
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("userPassword"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("userPassword"));
         ReusableMethods.bekle(3);
-        lfcPages.loginPageSigInButton.click();
+        headerPages.loginPageSigInButton.click();
         ReusableMethods.bekle(1);
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
     }
 }

@@ -1,6 +1,6 @@
 package tests.ZBugReports;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -12,7 +12,7 @@ public class B3_FacebookBug {
     @Test
     public void facebookBug(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        LFCPages lfcPages = new LFCPages() ;
+        HeaderPages headerPages = new HeaderPages() ;
         ReusableMethods.scrollToBottom();
 
         WebElement facebookButton = Driver.getDriver().findElement(By.xpath("//*[@class='fab fa-facebook-square']")) ;
@@ -29,7 +29,7 @@ public class B3_FacebookBug {
     public void focebookWithGreenLine(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
 
-        LFCPages loyalfriendcarePages = new LFCPages();
+        HeaderPages loyalfriendcarePages = new HeaderPages();
 
       //  hatali_TakeScreenShootWithGreenLine.captureFullScreenWithGreenCheck(loyalfriendcarePages.homeButton,"doktor") ;
 
@@ -39,12 +39,13 @@ public class B3_FacebookBug {
 
     @Test
     public void cekimliSinif(){
-        LFCPages loyalfriendcarePages = new LFCPages();
+        HeaderPages loyalfriendcarePages = new HeaderPages();
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
 
-        LFCPages loyalfriendcarePages1 = new LFCPages() ;
+        HeaderPages loyalfriendcarePages1 = new HeaderPages() ;
         
-        hatali_TakeScreenShootWithGreenLine.captureFullScreenWithGreenCheck(loyalfriendcarePages.homeButton,"homeButton") ;
+        hatali_TakeScreenShootWithGreenLine.captureFullScreenWithGreenCheck(loyalfriendcarePages.homeButton,"homeButton"
+        ) ;
 
 
 

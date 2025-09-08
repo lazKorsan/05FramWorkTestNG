@@ -7,7 +7,9 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -298,4 +300,140 @@ public class ReusableMethods {
             System.out.println(urun.getText());
         }
     }
-}
+    public static void selectByVisibleText(WebElement element, String text) {
+        Select objSelect = new Select(element);
+        objSelect.selectByVisibleText(text);
+    }
+
+
+    public static void selectByIndex(WebElement element, int index) {
+        Select objSelect = new Select(element);
+        objSelect.selectByIndex(index);
+    }
+
+
+    public static void selectByValue(WebElement element, String value) {
+        Select objSelect = new Select(element);
+        List<WebElement> elementCount = objSelect.getOptions();
+        objSelect.selectByValue(value);
+        System.out.println("number of elements: " + elementCount.size());
+    }
+    public static void waitAndClickLocationText(WebElement element, String value) {
+        Driver.getDriver().findElement(By.xpath("//*[text()='" + value + "']")).click();
+    }
+
+
+
+
+        /**
+         * BELİRTİLEN TABLO İÇİNDE BİR METNİ ARAR VE SONUCU RAPORLAYARAK DOĞRULAR.
+         * @param driver WebDriver nesnesi
+         * @param targetUrl Kontrol edilecek sayfanın URL'si (opsiyonel - null geçilebilir)
+         * @param tableRowsLocator Tablodaki TÜM SATIRLARI veren XPath (//table//tr gibi)
+         * @param searchText Aranacak metin
+         * @param columnIndex (Opsiyonel) Aramayı belirli bir sütunda sınırlamak için.
+         *                    Verilmezse (-1) tüm satırın metninde arar.
+         * @return boolean - Metin bulunursa true, bulunamazsa Assertion hatası fırlatır.
+         */
+        public static boolean verifyTextInTable(WebDriver driver,
+                                                String targetUrl,
+                                                String tableRowsLocator,
+                                                String searchText,
+                                                int... columnIndex) {
+
+            // 1. Eğer URL verilmişse, o sayfaya git
+            if (targetUrl != null && !targetUrl.isEmpty()) {
+                driver.get(targetUrl);
+                System.out.println("Sayfaya gidildi: " + targetUrl);
+            }
+
+            // 2. Bekleme mekanizması - Tablonun yüklenmesini bekle
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            try {
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(tableRowsLocator)));
+            } catch (TimeoutException e) {
+                Assert.fail("TABLO BULUNAMADI! Verilen locator: " + tableRowsLocator);
+            }
+
+            // 3. Tüm satırları bul
+            List<WebElement> allRows = driver.findElements(By.xpath(tableRowsLocator));
+            System.out.println("Toplam satır sayısı: " + allRows.size());
+
+            // 4. Hangi sütunda arama yapılacağını belirle (Varargs handling)
+            int searchColumn = columnIndex.length > 0 ? columnIndex[0] : -1;
+
+            // 5. Satırları döngü ile ara
+            boolean isFound = false;
+            int foundAtRow = -1;
+
+            for (int i = 0; i < allRows.size(); i++) {
+                WebElement currentRow = allRows.get(i);
+                String rowTextToCheck;
+
+                if (searchColumn == -1) {
+                    // Tüm satırda ara
+                    rowTextToCheck = currentRow.getText();
+                } else {
+                    // Belirli bir sütunda ara
+                    try {
+                        // Satırdaki hücreleri al (td veya th)
+                        List<WebElement> cells = currentRow.findElements(By.xpath(".//td | .//th"));
+                        if (cells.size() > searchColumn) {
+                            rowTextToCheck = cells.get(searchColumn).getText();
+                        } else {
+                            // Eğer o indekste hücre yoksa, boş string ile devam et
+                            rowTextToCheck = "";
+                        }
+                    } catch (StaleElementReferenceException e) {
+                        // Element eskimis olabilir, yeniden bul
+                        allRows = driver.findElements(By.xpath(tableRowsLocator));
+                        currentRow = allRows.get(i);
+                        rowTextToCheck = currentRow.getText();
+                    }
+                }
+
+                // Metni kontrol et
+                if (rowTextToCheck.contains(searchText)) {
+                    isFound = true;
+                    foundAtRow = i + 1; // Kullanıcı için 1-based index
+                    System.out.println("✅ BULUNDU! '" + searchText + "' metni " + foundAtRow + ". satırda yer alıyor.");
+                    System.out.println("   Satır içeriği: " + rowTextToCheck.trim());
+                    break;
+                }
+            }
+
+            // 6. Raporlama ve Assertion
+            if (isFound) {
+                System.out.println("✅ DOĞRULAMA BAŞARILI: '" + searchText + "' tabloda bulundu.");
+                return true;
+            } else {
+                // Detaylı hata mesajı
+                String errorMessage = "❌ DOĞRULAMA BAŞARISIZ: '" + searchText + "' metni tabloda bulunamadı!\n" +
+                        "   Arama yapılan locator: " + tableRowsLocator + "\n" +
+                        "   Toplam tarama yapılan satır: " + allRows.size();
+                System.out.println(errorMessage);
+
+                // İstersen tüm tabloyu yazdırabilirsin (debug için)
+                printTableContents(driver, tableRowsLocator);
+
+                Assert.fail(errorMessage);
+                return false; // Assert.fail zaten exception atar, buraya gelmez
+            }
+        }
+
+        /**
+         * TABLO İÇERIĞINI YAZDIRIR (DEBUG İÇİN)
+         */
+        private static void printTableContents(WebDriver driver, String tableRowsLocator) {
+            System.out.println("--- TABLO İÇERİĞİ (DEBUG) ---");
+            List<WebElement> rows = driver.findElements(By.xpath(tableRowsLocator));
+            for (int i = 0; i < rows.size(); i++) {
+                System.out.println((i + 1) + ". satır: " + rows.get(i).getText());
+            }
+            System.out.println("-----------------------------");
+        }
+        //printProductsInCategory
+
+    }
+
+

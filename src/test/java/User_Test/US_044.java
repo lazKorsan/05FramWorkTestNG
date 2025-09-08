@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,7 +16,7 @@ public class US_044 {
     // Logout seçeneğine tıklayarak admin panelinden
     // güvenli bir şekilde çıkış yapabilmeli
     // ve HomePage'e donebilmeliyim.
-    LFCPages lfcPages = new LFCPages() ;
+    HeaderPages headerPages = new HeaderPages() ;
     SoftAssert softAssert = new SoftAssert();
 
     @BeforeClass
@@ -34,15 +34,15 @@ public class US_044 {
 
 
         // 2 sıgnInButtona tıklayın
-        lfcPages.signInButton.click();
+        headerPages.signInButton.click();
 
         //3 geçerli admin bilgileri ile sayfaya giriş yapın
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
         // anaSayfaya yönlendirildiğinizi doğrulayın
-        TakeScreenShotsWithRedSquare.captureScreenshotWithRedBorder(lfcPages.accountButton,"loyalfriendcarePages"+".accountButton") ;
+        TakeScreenShotsWithRedSquare.captureScreenshotWithRedBorder(headerPages.accountButton,"loyalfriendcarePages"+".accountButton") ;
 
         String expectedUrl = "https://qa.loyalfriendcare.com/en";
         String actualUrl = Driver.getDriver().getCurrentUrl() ;
@@ -52,7 +52,7 @@ public class US_044 {
     @Test
     public void TC_02(){
         // 1 admin sayfasına giriş yapın
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
         // 2 sayfa URL uzantısının "admin" içerdiğini doğrulayın
         String expectedUrlIcerik = "admin" ;
@@ -60,8 +60,8 @@ public class US_044 {
         Assert.assertTrue(actualUrlIcerik.contains(expectedUrlIcerik));
 
         // 3 profilden settings butona tıklayın
-        lfcPages.profileButton.click();
-        lfcPages.settingsButton.click();
+        headerPages.profileButton.click();
+        headerPages.settingsButton.click();
 
         // 4 açılan sayfanın uzantısının "settings" olduğunu doğrulayın
         expectedUrlIcerik ="settings";
@@ -77,10 +77,10 @@ public class US_044 {
     @Test
     public void TC_03(){
         // 1 profileButton a tıkla
-        lfcPages.profileButton.click();
+        headerPages.profileButton.click();
 
         // 2 açılır menüden editProfileButton tıkla
-        lfcPages.editProfileButton.click();
+        headerPages.editProfileButton.click();
 
         // 3 açılan sayfa uzantısının "edit" içerdiğini doğrula
         String expectedUrlIcerik = "editPage";
@@ -93,10 +93,10 @@ public class US_044 {
     @Test
     public void TC_04(){
         // 1 profileButton tıkla
-        lfcPages.profileButton.click();
+        headerPages.profileButton.click();
 
         // 2 açılır menüden logOutButton tıkla
-        lfcPages.logOutButton.click();
+        headerPages.logOutButton.click();
 
         // anasayfaya yönlendirildiğini doğrula
         String anaSayfaUrl = "https://qa.loyalfriendcare.com/en" ;
@@ -108,10 +108,10 @@ public class US_044 {
     @Test
     public void TC_05(){
         // sıgnOutButton tıklayarak sayfadan ayrıl
-        lfcPages.signOutButton.click();
+        headerPages.signOutButton.click();
 
         String expectedSignInButtonText = "Sign In";
-        Assert.assertEquals(lfcPages.signInButton.getText(),expectedSignInButtonText);
+        Assert.assertEquals(headerPages.signInButton.getText(),expectedSignInButtonText);
 
     }
 }

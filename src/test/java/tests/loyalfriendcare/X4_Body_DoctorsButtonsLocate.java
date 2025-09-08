@@ -1,6 +1,6 @@
 package tests.loyalfriendcare;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
@@ -15,46 +15,46 @@ public class X4_Body_DoctorsButtonsLocate {
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
 
-        LFCPages lfcPages = new LFCPages();
+        HeaderPages headerPages = new HeaderPages();
 
-        ReusableMethods.getWebElementScreenshot(lfcPages.DrAlejandroMartinezButton,"DrAlejandroMartinezButton");
-        lfcPages.DrAlejandroMartinezButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.DrAlejandroMartinezButton,"DrAlejandroMartinezButton");
+        headerPages.DrAlejandroMartinezButton.click();
 
         //ReusableMethods.bekle(2);
         Driver.getDriver().navigate().back();
 
-        ReusableMethods.getWebElementScreenshot(lfcPages.DrMarcusRodriguezButton,"DrMarcusRodriguezButton");
-        lfcPages.DrMarcusRodriguezButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.DrMarcusRodriguezButton,"DrMarcusRodriguezButton");
+        headerPages.DrMarcusRodriguezButton.click();
         //ReusableMethods.bekle(2);
         Driver.getDriver().navigate().back();
 
-        ReusableMethods.getWebElementScreenshot(lfcPages.DrOliviaBennettButton,"DrOliviaBennettButton");
-        lfcPages.DrOliviaBennettButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.DrOliviaBennettButton,"DrOliviaBennettButton");
+        headerPages.DrOliviaBennettButton.click();
         //ReusableMethods.bekle(2);
         Driver.getDriver().navigate().back();
 
-        ReusableMethods.getWebElementScreenshot(lfcPages.DrEmilyChangButton,"DrEmilyChangButton");
-        lfcPages.DrEmilyChangButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.DrEmilyChangButton,"DrEmilyChangButton");
+        headerPages.DrEmilyChangButton.click();
         //ReusableMethods.bekle(2);
         Driver.getDriver().navigate().back();
 
-        ReusableMethods.getWebElementScreenshot(lfcPages.DrNathanPatelButton,"DrNathanPatelButton");
-        lfcPages.DrNathanPatelButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.DrNathanPatelButton,"DrNathanPatelButton");
+        headerPages.DrNathanPatelButton.click();
         //ReusableMethods.bekle(5);
         Driver.getDriver().navigate().back();
 
-        ReusableMethods.getWebElementScreenshot(lfcPages.DrIsabellaWongButton,"DrIsabellaWongButton");
-        lfcPages.DrIsabellaWongButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.DrIsabellaWongButton,"DrIsabellaWongButton");
+        headerPages.DrIsabellaWongButton.click();
         //ReusableMethods.bekle(5);
         Driver.getDriver().navigate().back();
 
-        ReusableMethods.getWebElementScreenshot(lfcPages.DrLiamOConnerButton,"DrLiamOConnerButton");
-        lfcPages.DrLiamOConnerButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.DrLiamOConnerButton,"DrLiamOConnerButton");
+        headerPages.DrLiamOConnerButton.click();
         //ReusableMethods.bekle(5);
         Driver.getDriver().navigate().back();
 
-        ReusableMethods.getWebElementScreenshot(lfcPages.DrSophiaKimButton,"DrSophiaKimButton");
-        lfcPages.DrSophiaKimButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.DrSophiaKimButton,"DrSophiaKimButton");
+        headerPages.DrSophiaKimButton.click();
         //ReusableMethods.bekle(5);
         Driver.getDriver().navigate().back();
 
@@ -62,9 +62,9 @@ public class X4_Body_DoctorsButtonsLocate {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("window.scrollBy(0,300)");
         ReusableMethods.bekle(4);
-        ReusableMethods.getWebElementScreenshot(lfcPages.MrAliButton,"MrAliButton");
-        XPathGenerator.printXpathFormulas(lfcPages.MrAliButton);
-        lfcPages.MrAliButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.MrAliButton,"MrAliButton");
+        XPathGenerator.printXpathFormulas(headerPages.MrAliButton);
+        headerPages.MrAliButton.click();
         ReusableMethods.bekle(5);
         Driver.getDriver().navigate().back();
 

@@ -1,6 +1,6 @@
 package tests.ZRecylbin;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -21,12 +21,12 @@ public class US_002_pD {
     @Test(dataProvider = "buttonProvider")
     public void TC_01(String buttonFieldName, String buttonName, String expectedUrlPart) {
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        LFCPages page = new LFCPages();
+        HeaderPages page = new HeaderPages();
         SoftAssert softAssert = new SoftAssert();
 
         try {
             // Dinamik olarak WebElement'e eriş
-            java.lang.reflect.Field field = LFCPages.class.getDeclaredField(buttonFieldName);
+            java.lang.reflect.Field field = HeaderPages.class.getDeclaredField(buttonFieldName);
             field.setAccessible(true);
             Object obj = field.get(page);
 

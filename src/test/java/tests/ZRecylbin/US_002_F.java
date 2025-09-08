@@ -1,6 +1,6 @@
 package tests.ZRecylbin;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -23,7 +23,7 @@ public class US_002_F {
         // < --
         //Driver.getDriver().get(ConfigReader.getProperty("lfcurl"));
         // -- >
-        LFCPages loyalfriendcarePages = new LFCPages() ;
+        HeaderPages loyalfriendcarePages = new HeaderPages() ;
 
         return new Object[][]{
                 {loyalfriendcarePages.signInButton, "signInButton", "loginPage"} ,

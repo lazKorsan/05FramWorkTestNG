@@ -1,6 +1,6 @@
 package tests.loyalfriendcare;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -15,37 +15,37 @@ public class X8_AboutUsPages_Locate {
     public void aboutUsPageTest(){
         // budgetVetCareButton ; petShelterButton  ;  certifiedVetButton ; nutritionShop ;
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        LFCPages lfcPages = new LFCPages() ;
-        lfcPages.aboutUsButton.click();
+        HeaderPages headerPages = new HeaderPages() ;
+        headerPages.aboutUsButton.click();
         ReusableMethods.takeFullPageScreenshot("loyalfriendcare.com/en/about");
 
         ReusableMethods.getWebElementScreenshot(
-                lfcPages.budgetVetCareButton,
+                headerPages.budgetVetCareButton,
                 "budgetVetCareButton"
                 +LocalDate.now().format(DateTimeFormatter.ISO_DATE));
-        lfcPages.budgetVetCareButton.click();
+        headerPages.budgetVetCareButton.click();
         Driver.getDriver().navigate().back();
 
         ReusableMethods.getWebElementScreenshot(
-                lfcPages.petShelterButton,
+                headerPages.petShelterButton,
                 "petShelterButton"
                         +LocalDate.now().format(DateTimeFormatter.ISO_DATE));
-        lfcPages.petShelterButton.click();
+        headerPages.petShelterButton.click();
         Driver.getDriver().navigate().back();
 
         ReusableMethods.getWebElementScreenshot(
-                lfcPages.certifiedVetButton,
+                headerPages.certifiedVetButton,
                 "certifiedVetButton"
                         +LocalDate.now().format(DateTimeFormatter.ISO_DATE));
-        lfcPages.certifiedVetButton.click();
+        headerPages.certifiedVetButton.click();
         Driver.getDriver().navigate().back();
 
 
         ReusableMethods.getWebElementScreenshot(
-                lfcPages.nutritionShop,
+                headerPages.nutritionShop,
                 "nutritionShop"
                         +LocalDate.now().format(DateTimeFormatter.ISO_DATE));
-        lfcPages.nutritionShop.click();
+        headerPages.nutritionShop.click();
         Driver.getDriver().navigate().back();
 
         ReusableMethods.bekle(5);

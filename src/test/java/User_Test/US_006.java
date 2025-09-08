@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -17,7 +17,7 @@ public class US_006 extends TestBaseRapor {
     // Home page sayfasının footer bölümündeki
     // tüm textlerin okunabilir olduğunu
     // ve butonların/linklerin aktif çalıştığını görmek istiyorum.
-    LFCPages lfcPages;
+    HeaderPages headerPages;
 
 
     @DataProvider
@@ -41,7 +41,7 @@ public class US_006 extends TestBaseRapor {
     @BeforeMethod
     public void setUp() {
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages = new LFCPages();
+        headerPages = new HeaderPages();
     }
 
     @AfterMethod
@@ -77,27 +77,27 @@ public class US_006 extends TestBaseRapor {
     private WebElement getButtonElement(String fieldName) {
         switch (fieldName) {
             case "footerLogoButtons":
-                return lfcPages.footerLogoButtons;
+                return headerPages.footerLogoButtons;
             case "footerWellnesButton":
-                return lfcPages.footerWellnesButton;
+                return headerPages.footerWellnesButton;
             case "footerDentalCareButton":
-                return lfcPages.footerDentalCareButton;
+                return headerPages.footerDentalCareButton;
             case "footerAnaesthesiaButton":
-                return lfcPages.footerAnaesthesiaButton;
+                return headerPages.footerAnaesthesiaButton;
             case "footerDermatologyButton":
-                return lfcPages.footerDermatologyButton;
+                return headerPages.footerDermatologyButton;
             case "footerDiagnosticsButton":
-                return lfcPages.footerDiagnosticsButton;
+                return headerPages.footerDiagnosticsButton;
             case "footerFacebookButton":
-                return lfcPages.footerFacebookButton;
+                return headerPages.footerFacebookButton;
             case "footerXButton":
-                return lfcPages.footerXButton;
+                return headerPages.footerXButton;
             case "footerYoutubeButton":
-                return lfcPages.footerYoutubeButton;
+                return headerPages.footerYoutubeButton;
             case "footerPinterestButton":
-                return lfcPages.footerPinterestButton;
+                return headerPages.footerPinterestButton;
             case "footerInstagramButton":
-                return lfcPages.footerInstagramButton;
+                return headerPages.footerInstagramButton;
 
             default:
                 throw new IllegalArgumentException("Böyle bir buton yok: " + fieldName);

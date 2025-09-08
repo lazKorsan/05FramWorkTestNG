@@ -1,12 +1,12 @@
 package User_Test;
 
-import Pages.DBPages;
+import Pages.AdminPages;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
 import utilities.Driver;
 
 public class US_040 {
-    DBPages dbPages = new DBPages() ;
+    AdminPages adminPages = new AdminPages() ;
     //Bir yönetici olarak,
     // yeni bir aşı ekleyebilmeli ve
     // bu aşıyı mevcut aşılar listesine kaydedebilmeliyim.
@@ -17,21 +17,21 @@ public class US_040 {
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
 
         // sighUp buttona tıkla
-        dbPages.signInButton.click();
+        adminPages.signInButton.click();
 
         // login sayfasına geçerli mail ve password gir.
-        dbPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        dbPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        dbPages.loginPageSignInButton.click();
+        adminPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        adminPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        adminPages.loginPageSignInButton.click();
 
         // account buttona tıklayarak admin sayfasına ulaş
-        dbPages.accountButton.click();
+        adminPages.accountButton.click();
 
         // dashboard sekmesine tıkla
-        dbPages.dashBoard.click();
+        adminPages.dashBoard.click();
 
         // dashboardan vaccination buttonu tıkla
-        dbPages.vaccinationsButton.click();
+        adminPages.vaccinationsButton.click();
 
 
 

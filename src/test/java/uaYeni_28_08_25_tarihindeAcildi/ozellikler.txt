@@ -1,0 +1,10 @@
+42 nci class da multi screen shoots çağırılması var
+
+Banner oluşturma banner clasında  tag %%%banner  REGRESYONTESTİ
+
+çoklu screenshots kırmızı çerçeveye alır QR kod koyar %%%QR code class US_042
+
+%%%qr  src/test/java/uaYeni_28_08_25_tarihindeAcildi/regresyonTesti.java işlevi
+seçili elementleri kırmızı çerçeve içine alır
+seçili elementleri yeşil check işareti yapar
+sayfanın url ini karekod olarak verir

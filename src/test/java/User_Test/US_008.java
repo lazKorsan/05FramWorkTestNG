@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,7 +16,7 @@ public class US_008 {
     @BeforeMethod
     public void setUp(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        LFCPages loyalfriendcarePages = new LFCPages() ;
+        HeaderPages loyalfriendcarePages = new HeaderPages() ;
 
     }
     @AfterMethod
@@ -27,14 +27,14 @@ public class US_008 {
     public void TC_01(){
 
 
-        LFCPages lfcPages = new LFCPages() ;
+        HeaderPages headerPages = new HeaderPages() ;
 
-        lfcPages.signInButton.click();
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("usermail"));
-        lfcPages.passwordBox.sendKeys("userPassword");
+        headerPages.signInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("usermail"));
+        headerPages.passwordBox.sendKeys("userPassword");
         ReusableMethods.bekle(4);
 
-        lfcPages.loginPageSigInButton.click();
+        headerPages.loginPageSigInButton.click();
 
     }
 }

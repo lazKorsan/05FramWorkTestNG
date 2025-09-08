@@ -3,13 +3,17 @@ package tests.ZBugReports;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.ZRecylbin.hatali_GetWebElementScreenshots;
+import utilities.ConfigReader;
+import utilities.Driver;
 import utilities.GetWebElementScreenshots;
 
 public class B1_BUGReports {
     @Test
     public void testElementHighlight() {
 
-        String xpath = "//button[contains(text(),'Gönder')]";
+        Driver.getDriver().get(ConfigReader.getProperty("lfc"));
+
+        String xpath = "//*[@class='btn_add']";
         String screenshotPath = GetWebElementScreenshots.captureWebElementWithHighlight(xpath, "submit_button");
 
         if (screenshotPath != null) {

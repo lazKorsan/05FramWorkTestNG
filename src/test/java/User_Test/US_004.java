@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -24,21 +24,27 @@ public class US_004 {
     @Test (dataProvider = "aranacakUrunProvideri")
     public void TC_01(String aranacakUrun){
         Driver.getDriver().get(ConfigReader.getProperty("lfc")); // satır25
-        LFCPages lfcPages = new LFCPages() ;
+        HeaderPages headerPages = new HeaderPages() ;
 
 
-        lfcPages.searchBox.sendKeys(aranacakUrun+ Keys.ENTER);
-        lfcPages.searchResult.click();
+        headerPages.searchBox.sendKeys(aranacakUrun+ Keys.ENTER);
+        headerPages.searchResult.click();
         ReusableMethods.scrollToBottom();
 
 
         String unExpectedSonucYazisi = ConfigReader.getProperty("lfcBulunamadiYazisi"); // 0 Products Found
-        String searchResultTextContent = lfcPages.searchResultElementi.getText() ;
+        String searchResultTextContent = headerPages.searchResultElementi.getText() ;
 
         Assert.assertNotEquals(searchResultTextContent,unExpectedSonucYazisi,
                 aranacakUrun+"için arama sonucu"+searchResultTextContent);
 
         Driver.quitDriver();
+    }
+
+    @Test
+    public void account(){
+        Driver.getDriver().get(ConfigReader.getProperty("lfc"));
+
     }
 
 }

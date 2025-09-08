@@ -1,13 +1,12 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 import utilities.TestBaseRapor;
-
 
 
 public class US_003 extends TestBaseRapor {
@@ -24,7 +23,7 @@ public class US_003 extends TestBaseRapor {
         SoftAssert softAssert = new SoftAssert();
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        LFCPages loyalfriendcarePages = new LFCPages();
+        HeaderPages loyalfriendcarePages = new HeaderPages();
 
         // 1 Header Bölümü Butonlarının Görünürlüğünü test eder.
         softAssert.assertTrue(loyalfriendcarePages.homeButton.isDisplayed(),
@@ -96,13 +95,13 @@ public class US_003 extends TestBaseRapor {
                "Kullanici AnaSayfa Header Bölümünde Bulunan Butonlara Basa bilmeli ve ilgili sayfaya gidebilmeli ");
 
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        LFCPages lfcPages = new LFCPages() ;
+        HeaderPages headerPages = new HeaderPages() ;
        SoftAssert softAssert = new SoftAssert();
         // 3 Header Menusundeki butonlar ilgili sayfaya gitmeli
         // sayfa uzantısı Buton ismi ile aynı olalıdır
         // <--
-        lfcPages.homeButton.click();
-        ReusableMethods.getWebElementScreenshot(lfcPages.homeButton,"homeButton");
+        headerPages.homeButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.homeButton,"homeButton");
         extentTest.info("Home butonuna tıklar ") ;
         String expectedUrl = "https://qa.loyalfriendcare.com/en" ;
         String actualUrl = Driver.getDriver().getCurrentUrl();
@@ -114,8 +113,8 @@ public class US_003 extends TestBaseRapor {
         //extentTest.pass(expectedTitle +"ile" +actualTitle +"test eder") ;
 
         // <--
-        lfcPages.aboutUsButton.click();
-        ReusableMethods.getWebElementScreenshot(lfcPages.aboutUsButton,"aboutUsButton");
+        headerPages.aboutUsButton.click();
+        ReusableMethods.getWebElementScreenshot(headerPages.aboutUsButton,"aboutUsButton");
         extentTest.info("About Us Butonuna tıklar ") ;
         String expectedUrlIcerik = "about" ;
         String actualUrlIcerik = Driver.getDriver().getCurrentUrl() ;
@@ -123,14 +122,14 @@ public class US_003 extends TestBaseRapor {
                 "Sayfa Url :"+ actualUrlIcerik);
         extentTest.pass("About Us butona basıldığında açılan sayfa Url test eder") ;
         String expectedTitle = "About Us";
-        String actualTitle = lfcPages.titleContainer.getText().trim() ;
+        String actualTitle = headerPages.titleContainer.getText().trim() ;
         softAssert.assertEquals(actualTitle,expectedTitle,"Beklenen Başlık Saya Başlığı ile uyumlu değil ");
         extentTest.pass(expectedTitle +"ile" +actualTitle +"test eder") ;
 
 
         // < --
         Driver.getDriver().navigate().back();
-        lfcPages.departmentsButton.click();
+        headerPages.departmentsButton.click();
         ReusableMethods.takeFullPageScreenshot("departmentsButton");
         extentTest.info("About Us Butonuna tıklar ") ;
         expectedUrlIcerik = "Departments" ;
@@ -139,13 +138,13 @@ public class US_003 extends TestBaseRapor {
                 "Sayfa Url :"+ actualUrlIcerik);
         extentTest.pass("Departments Butona basarak açılan sayfanın Url uzantısını test eder") ;
         expectedTitle = "Departments";
-        actualTitle = lfcPages.titleContainer.getText() ;
+        actualTitle = headerPages.titleContainer.getText() ;
         softAssert.assertEquals(actualTitle,expectedTitle,"Beklenen Başlık Saya Başlığı ile uyumlu değil");
         extentTest.pass(expectedTitle +"ile" +actualTitle +"test eder") ;
 
         // < --
         Driver.getDriver().navigate().back();
-        lfcPages.doctorsButton.click();
+        headerPages.doctorsButton.click();
         ReusableMethods.takeFullPageScreenshot("doctorsButton");
         extentTest.info("Doctors  Butonuna tıklar ") ;
         expectedUrlIcerik = "Doctors" ;
@@ -154,13 +153,13 @@ public class US_003 extends TestBaseRapor {
                 "Sayfa Url :"+ actualUrlIcerik);
         extentTest.pass("Doctors Butona basarak açılan sayfanın Url uzantısını test eder") ;
         expectedTitle = "Doctors";
-        actualTitle = lfcPages.titleContainer.getText() ;
+        actualTitle = headerPages.titleContainer.getText() ;
         softAssert.assertEquals(actualTitle,expectedTitle,"Beklenen Başlık Saya Başlığı ile uyumlu değil");
         extentTest.pass(expectedTitle +"ile" +actualTitle +"test eder") ;
 
         // <--
         Driver.getDriver().navigate().back();
-        lfcPages.medicinesButton.click();
+        headerPages.medicinesButton.click();
         ReusableMethods.takeFullPageScreenshot("medicinesButton");
         extentTest.info("Medicines  Butonuna tıklar ") ;
         expectedUrlIcerik = "Medicines" ;
@@ -169,13 +168,13 @@ public class US_003 extends TestBaseRapor {
                 "Sayfa Url :"+ actualUrlIcerik);
         extentTest.pass("Medicines Butona basarak açılan sayfanın Url uzantısını test eder") ;
         expectedTitle = "Medicines";
-       actualTitle = lfcPages.titleContainer.getText() ;
+       actualTitle = headerPages.titleContainer.getText() ;
        softAssert.assertEquals(actualTitle,expectedTitle,"Beklenen Başlık Saya Başlığı ile uyumlu değil");
         extentTest.pass(expectedTitle +"ile" +actualTitle +"test eder") ;
 
         // <--
         Driver.getDriver().navigate().back();
-        lfcPages.vaccinationsButton.click();
+        headerPages.vaccinationsButton.click();
         ReusableMethods.takeFullPageScreenshot("vaccinationsButton");
         extentTest.info("Vaccinations Butonuna tıklar ") ;
         expectedUrlIcerik = "Vaccinations" ;
@@ -184,12 +183,12 @@ public class US_003 extends TestBaseRapor {
                 "Sayfa Url :"+ actualUrlIcerik);
         extentTest.pass("Vaccinations Butona basarak açılan sayfanın Url uzantısını test eder") ;
         expectedTitle = "Vaccinations";
-       actualTitle = lfcPages.titleContainer.getText() ;
+       actualTitle = headerPages.titleContainer.getText() ;
         softAssert.assertEquals(actualTitle,expectedTitle,"Beklenen Başlık Saya Başlığı ile uyumlu değil");
         extentTest.pass(expectedTitle +"ile" +actualTitle +"test eder") ;
 
         // <--
-        lfcPages.homeButton.click();
+        headerPages.homeButton.click();
         extentTest.info("Home butonuna basarak ana sayfaya döner ");
 
 

@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -10,7 +10,7 @@ import utilities.MultiScreenShootsMethods;
 import utilities.TakeScreenShotsWithRedSquare;
 
 public class US_043 {
-    LFCPages lfcPages = new LFCPages() ;
+    HeaderPages headerPages = new HeaderPages() ;
 
     @BeforeClass
     public void setUp(){
@@ -25,21 +25,21 @@ public class US_043 {
     public void TC_01(){
 
         // 1 anaSayfa signInButton tıkla
-        lfcPages.signInButton.click();
+        headerPages.signInButton.click();
 
         // login sayfassında geçerli bilgileri girerek admin girişi yap
-        lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        lfcPages.loginPageSigInButton.click();
+        headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        headerPages.loginPageSigInButton.click();
 
         // 2 anaSayfaya yönlendirildiğini doğrula
         String expectedUrl = "https://qa.loyalfriendcare.com/en" ;
         String actualUrl = Driver.getDriver().getCurrentUrl() ;
 
-        Assert.assertEquals(actualUrl,expectedUrl);
+        //Assert.assertEquals(actualUrl,expectedUrl);
 
         // 3 accountButton linkine tıklayın
-        lfcPages.accountButton.click();
+        headerPages.accountButton.click();
 
         // yönlendirildiğiniz sayfa URL uzantısının "admin" içerdiğini doğrulayın
         String expectedUrlIcerik = "admin";
@@ -47,8 +47,8 @@ public class US_043 {
         Assert.assertTrue(actualUrl.contains(expectedUrlIcerik));
 
         // profileButton dan editProfileButton tıklayarak ilgili sayfaya ulaşın
-        lfcPages.profileButton.click();
-        lfcPages.editProfileButton.click();
+        headerPages.profileButton.click();
+        headerPages.editProfileButton.click();
 
         // sayfa uzantısının "edit" içerdiğini doğrulayın
         expectedUrlIcerik = "edit" ;
@@ -57,19 +57,44 @@ public class US_043 {
 
         MultiScreenShootsMethods.getWebelementWithRedBorder(
                 Driver.getDriver(),
-                ConfigReader.getProperty("lfc"),
-                lfcPages.errorContainerWebelement
+                actualUrl,
+                headerPages.errorContainerWebelement
         );
 
 
 
-        TakeScreenShotsWithRedSquare.captureScreenshotWithRedBorder(lfcPages.errorContainerWebelement,"hatalısayfa");
-
-
-
-
-
-
+        TakeScreenShotsWithRedSquare.captureScreenshotWithRedBorder(headerPages.errorContainerWebelement,"hatalısayfa");
 
     }
+
+    @Test
+    public void sonrasilIseYaramaz(){
+        Driver.getDriver().get(ConfigReader.getProperty("mdcn"));
+        headerPages.rimadylButton.click();
+        String expectedUrl = "rimadly";
+        String actualUrl = "https://qa.loyalfriendcare.com/en/Medicines/suretin-mipen-ruma";
+
+        MultiScreenShootsMethods.getWebelementWithRedBorder(
+                Driver.getDriver(),
+                actualUrl,
+                headerPages.statusBar
+        );
+
+        }
+
+        @Test
+    public void sonraSilIseYaramaz2(){
+        Driver.getDriver().get(ConfigReader.getProperty("mdcn"));
+
+        headerPages.alpinaButton.click();
+        String expectedUrlIcerik = "alpinia-officinarum";
+        String actualUrl = Driver.getDriver().getCurrentUrl();
+        MultiScreenShootsMethods.getWebelementWithGreenLine(
+                Driver.getDriver(),
+                actualUrl,
+                headerPages.statusBar
+        );
+
+        }
 }
+

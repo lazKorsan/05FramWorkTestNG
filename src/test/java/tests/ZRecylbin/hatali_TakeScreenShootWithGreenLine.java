@@ -3,6 +3,8 @@ package tests.ZRecylbin;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+import utilities.ConfigReader;
 import utilities.Driver;
 
 import javax.imageio.ImageIO;
@@ -74,5 +76,11 @@ public class hatali_TakeScreenShootWithGreenLine {
             System.err.println("Hata: " + e.getMessage());
             return null;
         }
+    }
+
+    @Test
+    public void t(){
+        Driver.getDriver().get(ConfigReader.getProperty("lfc"));
+        hatali_GetWebElementScreenshots.captureWebElementWithHighlight("//*[@class='btn_add']","dfge");
     }
 }

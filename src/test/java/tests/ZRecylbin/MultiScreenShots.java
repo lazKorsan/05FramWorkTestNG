@@ -1,5 +1,6 @@
 package tests.ZRecylbin;
 
+import Pages.AdminPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,6 +9,10 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
+import org.testng.annotations.Test;
+import utilities.ConfigReader;
+import utilities.Driver;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -109,5 +114,15 @@ public class MultiScreenShots {
                         "document.body.appendChild(container);",
                 url, qrCodeImage
         );
+    }
+
+    @Test
+    public void t(){
+        AdminPages adminPages = new AdminPages();
+
+        Driver.getDriver().get(ConfigReader.getProperty("lfc"));
+
+
+
     }
 }

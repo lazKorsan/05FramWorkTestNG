@@ -1,5 +1,6 @@
 package utilities;
 
+import Pages.HeaderPages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -17,8 +18,12 @@ import java.util.List;
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
+import org.testng.annotations.Test;
 
 public class MultiScreenShootsMethods {
+    HeaderPages headerPages = new HeaderPages();
+    // < -- ========== METHOD ÇAĞIRILMASI SAYFANIN SONUNDA
+     //  %%%QR,RED,GREEN
 
     private static final int RED_BORDER_THICKNESS = 5; // Kırmızı çerçevenin kalınlığı
     private static final int GREEN_CHECK_THICKNESS = 5; // Yeşil check işaretinin kalınlığı
@@ -163,6 +168,53 @@ public class MultiScreenShootsMethods {
                                                               WebElement[] redElements,
                                                               WebElement[] greenElements){
         capturePageWithAnnotations(driver, url, redElements, greenElements);
+    }
+
+
+    @Test
+    public void multiScreenShotsMetodlarininCagirilmasi() {
+
+        Driver.getDriver().get(ConfigReader.getProperty("lfc"));
+
+        // cağırılan elementlerin kırmızı cizgiye alınması
+        MultiScreenShootsMethods.getWebelementWithRedBorder( // Kırmızı cerceve
+                Driver.getDriver(),
+                ConfigReader.getProperty("lfc"),
+                headerPages.logoButton,
+                headerPages.signInButton,
+                headerPages.signUpButton
+        );
+
+        // cağırılan elementlerin altına yeşil chick işareti koyar
+        MultiScreenShootsMethods.getWebelementWithGreenLine(
+                Driver.getDriver(),
+                ConfigReader.getProperty("lfc"),
+                headerPages.homeButton,
+                headerPages.aboutUsButton,
+                headerPages.doctorsButton,
+                headerPages.doctorsButton
+        );
+
+        // hem kırmızı hem yeşil birlikte
+
+        MultiScreenShootsMethods.getWebelementWithRedBorderAndGreenLine(
+                Driver.getDriver(),
+                ConfigReader.getProperty("lfc"),
+                new WebElement[]{
+                        headerPages.logoButton,
+                        headerPages.signInButton,
+                        headerPages.signUpButton
+                },
+                new WebElement[]{
+                        headerPages.homeButton,
+                        headerPages.aboutUsButton,
+                        headerPages.doctorsButton,
+                        headerPages.departmentsButton,
+                        headerPages.medicinesButton
+                }
+
+        );
+
     }
 
 }

@@ -1,13 +1,12 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.TestBaseRapor;
-
 
 
 public class US_002 extends TestBaseRapor {
@@ -27,19 +26,19 @@ public class US_002 extends TestBaseRapor {
         // 1. Ana sayfanın açılması
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
         extentTest.info("Kullanıcı loyalfriendcare ana sayfasına gider") ;
-        LFCPages lfcPages = new LFCPages() ;
+        HeaderPages headerPages = new HeaderPages() ;
 
         // 2. Logo görünürlük kontrolü
 
-        Assert.assertTrue(lfcPages.logoButton.isDisplayed(),"Logo görünür değil");
+        Assert.assertTrue(headerPages.logoButton.isDisplayed(),"Logo görünür değil");
         extentTest.pass("Kullanıcı AnaSayfa Header Bölününde yer alan Logo'nun görünürlüğünü test eder");
 
         // 3. Logo tıklanabilirlik kontrolü
-       Assert.assertTrue(lfcPages.logoButton.isEnabled(),"Logo tıklanabilir değil");
+       Assert.assertTrue(headerPages.logoButton.isEnabled(),"Logo tıklanabilir değil");
        extentTest.pass("Kullanıcı LogoButonunun tıklanabilir olduğunu test eder") ;
 
        // 4. Logo tıklama işlemi
-        lfcPages.logoButton.click();
+        headerPages.logoButton.click();
         extentTest.info("Kullanıcı Logoya tıklar");
 
         //5. URL değişmezlik kontrolü
@@ -48,9 +47,9 @@ public class US_002 extends TestBaseRapor {
         String actualUrl = Driver.getDriver().getCurrentUrl() ;
         Assert.assertEquals(actualUrl,expectedUrl,"Logo tıklandığında ana sayfaya yönlendirme yapılmadı");
         extentTest.pass("LogoButonuna bastığında Url değişmediğini test eder") ;
-
+        extentTest.info("Logo Butonu Testi Başarılı ") ;
         Driver.quitDriver();
-        extentTest.info("Kullanıcı tarayıcıyı kapatır") ;
+
 
 
     }
@@ -73,7 +72,7 @@ public class US_002 extends TestBaseRapor {
         // 1. Ana Sayfanın Açılması
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
         extentTest.info("AnaSayfa Yüklendi") ;
-        LFCPages loyalfriendcarePages = new LFCPages() ;
+        HeaderPages loyalfriendcarePages = new HeaderPages() ;
 
         // 2. SignIn butonunun görünürlüğünü test eder.
         softAssert.assertTrue(loyalfriendcarePages.signInButton.isDisplayed(), "Görünürlük hatası");
@@ -88,12 +87,11 @@ public class US_002 extends TestBaseRapor {
         extentTest.info("Kullanıcı SignIn Butonuna tıklar") ;
 
         // 5. URL uzantısında "login" olduğunu test eder
-        String expectedUrlIcerik = "loginPage";
+        String expectedUrlIcerik = "login";
         String actualUrlIcerik = Driver.getDriver().getCurrentUrl() ;
 
         Assert.assertTrue(actualUrlIcerik.contains(expectedUrlIcerik)
-                ,"URL Doğrulama Hatası: Aktüel URL '\" + actualUrlIcerik + \"' beklenen '\" + \n" +
-                        "        expectedUrlIcerik + \"' içeriğini barındırmıyor"
+                ,"Login sayfası Url uzantısı beklenen uzantıyı karşılamıyor"
 
                 );
 
@@ -126,7 +124,7 @@ public class US_002 extends TestBaseRapor {
         // 1. Ana Sayfanın Açılması
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
         extentTest.info("AnaSayfa Yüklendi") ;
-        LFCPages loyalfriendcarePages = new LFCPages() ;
+        HeaderPages loyalfriendcarePages = new HeaderPages() ;
 
         //2. SignUp butonunun görünürlüğünü test eder.
 

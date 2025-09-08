@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -9,12 +9,12 @@ import utilities.Driver;
 
 public class US_002_G {
 
-    LFCPages lfcPages;
+    HeaderPages headerPages;
 
     @BeforeMethod
     public void setUp() {
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages = new LFCPages();
+        headerPages = new HeaderPages();
     }
 
     @AfterMethod
@@ -46,9 +46,9 @@ public class US_002_G {
     private WebElement getButtonElement(String fieldName) {
         switch (fieldName) {
             case "signInButton":
-                return lfcPages.signInButton;
+                return headerPages.signInButton;
             case "signUpButton":
-                return lfcPages.signUpButton;
+                return headerPages.signUpButton;
             default:
                 throw new IllegalArgumentException("Böyle bir buton yok: " + fieldName);
         }

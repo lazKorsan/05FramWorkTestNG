@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.DBPages;
+import Pages.AdminPages;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -14,12 +14,12 @@ public class US_40_dataProvider {
     @BeforeMethod
     public void setUp(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        DBPages dbPages = new DBPages() ;
-        dbPages.signInButton.click();
+        AdminPages adminPages = new AdminPages() ;
+        adminPages.signInButton.click();
 
-        dbPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        dbPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        dbPages.loginPageSignInButton.click();
+        adminPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        adminPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        adminPages.loginPageSignInButton.click();
         ReusableMethods.bekle(2);
 
 
@@ -45,34 +45,36 @@ public class US_40_dataProvider {
     @Test (dataProvider = "sendKeysProviders")
     public void dataProviderTesti(String Title, String content, String Price ){
 
-        DBPages dbPages = new DBPages() ;
+        AdminPages adminPages = new AdminPages() ;
 
-        dbPages.accountButton.click();
+        adminPages.accountButton.click();
 
         ReusableMethods.bekle(2);
 
-        dbPages.dashBoard.click();
-        dbPages.vaccinationsButton.click();
+        adminPages.dashBoard.click();
+        adminPages.vaccinationsButton.click();
         ReusableMethods.bekle(2);
 
-        dbPages.addVaccinationsButton.click();
+        adminPages.addVaccinationsButton.click();
         ReusableMethods.bekle(2);
 
         // < -- ============== DataProvider   ============== -- >
 
-        dbPages.petsTitleBox.sendKeys(Title);
-        dbPages.petsContentBox.sendKeys(content);
-        dbPages.petPriceBox.sendKeys(Price);
-
+        adminPages.petsTitleBox.sendKeys(Title);
+        adminPages.petsContentBox.sendKeys(content);
+        adminPages.petPriceBox.sendKeys(Price);
 
         // < -- =====^^^^====== DataProvider   ====^^^^======= -- >
+
+
+
         ReusableMethods.bekle(2);
 
-        dbPages.saveButton.click();
+        adminPages.saveButton.click();
 
         Driver.getDriver().navigate().refresh();
         ReusableMethods.scrollToBottom();
-        dbPages.deleteVaccinationsButton.click();
+        adminPages.deleteVaccinationsButton.click();
 
 
     }

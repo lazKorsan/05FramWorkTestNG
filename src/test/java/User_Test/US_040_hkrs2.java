@@ -1,14 +1,13 @@
 package User_Test;
 
-import Pages.DBPages;
+import Pages.AdminPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.Test;
 import utilities.*;
 
 public class US_040_hkrs2 {
-    DBPages dbPages = new DBPages() ;
+    AdminPages adminPages = new AdminPages() ;
     //Bir yönetici olarak,
     // yeni bir aşı ekleyebilmeli ve
     // bu aşıyı mevcut aşılar listesine kaydedebilmeliyim.
@@ -19,21 +18,21 @@ public class US_040_hkrs2 {
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
 
         // sighUp buttona tıkla
-        dbPages.signInButton.click();
+        adminPages.signInButton.click();
 
         // login sayfasına geçerli mail ve password gir.
-        dbPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        dbPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        dbPages.loginPageSignInButton.click();
+        adminPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        adminPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        adminPages.loginPageSignInButton.click();
 
         // account buttona tıklayarak admin sayfasına ulaş
-        dbPages.accountButton.click();
+        adminPages.accountButton.click();
 
         // dashboard sekmesine tıkla
-        dbPages.dashBoard.click();
+        adminPages.dashBoard.click();
 
         // dashboardan vaccination buttonu tıkla
-        dbPages.vaccinationsButton.click();
+        adminPages.vaccinationsButton.click();
 
         // addVaccinationsButton a tıkla
         WebElement addVaccinationsButtons = Driver.getDriver().findElement(By.xpath("//*[@class='btn btn-tag btn-success btn-tag-rounded']"));
@@ -95,24 +94,24 @@ public class US_040_hkrs2 {
     public void sadeceVarOlanasiyiSilme(){
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
 
-        dbPages.signInButton.click();
-        dbPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-        dbPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-        dbPages.loginPageSignInButton.click();
-        dbPages.accountButton.click();
+        adminPages.signInButton.click();
+        adminPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+        adminPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+        adminPages.loginPageSignInButton.click();
+        adminPages.accountButton.click();
 
-        dbPages.dashBoard.click();
-        dbPages.vaccinationsButton.click();
+        adminPages.dashBoard.click();
+        adminPages.vaccinationsButton.click();
         ReusableMethods.scrollToBottom();
-        dbPages.deleteVaccinationsButton.click();
+        adminPages.deleteVaccinationsButton.click();
         ReusableMethods.bekle(1);
         Driver.getDriver().navigate().refresh();
         ReusableMethods.scrollToBottom();
-        dbPages.deleteVaccinationsButton.click();
+        adminPages.deleteVaccinationsButton.click();
         ReusableMethods.bekle(1);
         Driver.getDriver().navigate().refresh();
         ReusableMethods.scrollToBottom();
-        dbPages.deleteVaccinationsButton.click();
+        adminPages.deleteVaccinationsButton.click();
 
         ReusableMethods.bekle(1);
 

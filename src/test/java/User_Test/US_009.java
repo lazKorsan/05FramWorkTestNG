@@ -1,120 +1,143 @@
 package User_Test;
 
-import Pages.LFCPages;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import Pages.HeaderPages;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.TestBaseRapor;
+import utilities.TestBaseRaporInLine;
 
-public class US_009 extends TestBaseRapor {
-    LFCPages lfcPages = new LFCPages() ;
+import java.time.Duration;
 
 
-    @BeforeMethod
-    public void setUp(){
-        Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-    }
+public class US_009 extends TestBaseRaporInLine {
 
-    @AfterMethod
-    public void tearDown(){
-        Driver.quitDriver();
-    }
-
+    HeaderPages adminPages = new HeaderPages() ;
+    // test
+    //Bir kullanıcı olarak, giriş yaparken şifremi unuttuğumda,
+    // 'Şifremi Unuttum' bağlantısını kullanarak
+    // şifremi sıfırlama sürecini başlatabilmek ve
+    // yeni bir şifre oluşturabilmek istiyorum.
 
     @Test
     public void TC_01(){
-        //1-)The user navigates to the page with the relevant URL.
-        //2) Confirms that it is on the homepage
-        //3-)Displays the 'Sign In' button in the header section
-        //4-)User clicks on the 'Sign In' button
-        //5)Confirms that you are redirected to the login page
-        //6-)Closes the page
+        // Geçerli mail adresi ile şifrenin sıfırlanabildiğini test etmek
+        // test geçmez
 
-        extentTest = extentReports.createTest("Header Bölümünde SignInButonu Testi",
-                "Kullanici AnaSayfa Header Bölümünde Bulunan Butonlara Basa bilmeli ve ilgili sayfaya gidebilmeli ");
+        extentTest = extentReports.createTest("Şifre Sıfırlama Testi",
+                "Kullanıcı şifre sıfırlama işleminin başarılı olmasını test eder");
         SoftAssert softAssert = new SoftAssert();
 
-        // 1 loyalfriendcare.com ana sayfasına gidip Url i doğrulayın
-        String expectedUrl = "https://qa.loyalfriendcare.com/en" ;
-        String actualUrl = Driver.getDriver().getCurrentUrl();
-        softAssert.assertTrue(actualUrl.equals(expectedUrl),"kullanıcı istenilen sayfada değil");
-        extentTest.info("Kullanıcı anaSayfada olduğunu doğrular") ;
+        // 1. Ana sayfaya git
+        Driver.getDriver().get(ConfigReader.getProperty("lfc"));
+        extentTest.info("Ana sayfa başarıyla yüklendi");
 
-        // 2 header bölümünde SignInButton görünür olduğunu test edin
-        softAssert.assertTrue(lfcPages.signInButton.isDisplayed(),
-                "sıgnInButton görünür değil");
-        extentTest.info("Kullanıcı header bölümünde signInButton'un görünürdüğünü doğrular");
+        // 2. Sign In butonuna tıkla
+        adminPages.signInButton.click();
+        extentTest.info("Sign In butonuna tıklandı");
 
-        // 3 Kullanıcı SıgnInbutton a tıklar
-        lfcPages.signInButton.click();
-        extentTest.info("Kullanıcı SıgnInbutton a tıklar") ;
+        // 3. Forgot Password butonuna tıkla
+        adminPages.forgotPasswordButton.click();
+        extentTest.info("Forgot Password butonuna tıklandı");
 
-        // 4 Kullanıcı login sayfasına yönlendirildiğini test eder
-        String expectedUrlIcerik = "loginPage";
-        String axtualUrlIcerik = Driver.getDriver().getCurrentUrl();
-        softAssert.assertTrue(axtualUrlIcerik.contains(expectedUrlIcerik),
-                "sayfa uzantısı bekleneni karşılamıyor");
-        extentTest.pass("Kullanıcı login sayfasına yönlendirildiğini doğrular") ;
+        // 4. Sayfanın şifre sıfırlama sayfasına yönlendirildiğini doğrula
+        String expectedUrlIcerik = "reset" ;
+        String currentUrl = Driver.getDriver().getCurrentUrl();
+        softAssert.assertTrue(currentUrl.contains(expectedUrlIcerik),
+                "Şifre sıfırlama sayfasına yönlendirilemedi. Mevcut URL: " + currentUrl);
+        extentTest.pass("Şifre sıfırlama sayfasına yönlendirildi:  " + currentUrl);
 
-        // 5 Kullanıcı Sayfay kapatır
-        extentTest.info("kullanıcı sayfayı kapatır")  ;
-        softAssert.assertAll();
+        // 5. Mail adresini girin
+        adminPages.mailBox.sendKeys(ConfigReader.getProperty("userMail"));
+        extentTest.info("Geçerli mail adresi girildi: " + ConfigReader.getProperty("userMail"));
+
+        // 6. Send Password Reset Link butonuna tıklayın
+        adminPages.sendPassWordLinkButton.click();
+        extentTest.info("Send Password Linkine tıklandı");
+
+        // 7. Alert yazısının içeriğini test eder
+        String expectedAlertText = "Password reset link has been sent to your email";
+
+        // çıkan PopUp Menüden text alma adımları
+        // 8 Alert yazısının çıkmasını bekler
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(4));
+        // Duration.ofSeconds( )  4 saniyeden az olmamalı. Alert yazısının çıkması bekleniyor
+        wait.until(ExpectedConditions.alertIsPresent()); //alert yazsını bekle
+        extentTest.info("Alert yazısının çıkmasını bekledi ") ;
+
+        // 9 alert yazısını kaydeder
+        Alert alert = Driver.getDriver().switchTo().alert(); // alerte geç
+
+        String actualAlertText = alert.getText();  // alert yazısını al
+        System.out.println("Alert metni: " + actualAlertText);
+        alert.accept();
+        extentTest.info("alert yazısı kaydedildi ") ;
+
+        // alert text beklenen içerikle karşılatırır
+        Assert.assertTrue(actualAlertText.equals(expectedAlertText), "şifre sıfırlama maili gönderilmedi ");
+        extentTest.pass("Şifre sıfırlama linki gönderilmedi ");
+        extentTest.fail("Şifre sıfırlama  linki çalışmıyor");
+
     }
+
     @Test
     public void TC_02(){
-        //1-)The user navigates to the page with the relevant URL.
-        //2) Confirms that it is on the homepage
-        //3-)Displays the 'Sign In' button in the header section
-        //4-)User clicks on the 'Sign In' button
-        //5)Confirms that the user is on the login page
-        //6-)'Forgot Password' link
-        //7-)Closes the page
+        // Geçerli mail adresi ile şifrenin sıfırlanmadığını test etmek
+        // test geçer
+        extentTest = extentReports.createTest("Şifre Sıfırlama Testi",
+                "Kullanıcı Şifresini sıfırlayamadığını doğrular");
 
-        // < -- ============================
-        SoftAssert softAssert = new SoftAssert();
+        // 1 Kayıtlı Kullanıcı ana Sayfaya gider
+        Driver.getDriver().get(ConfigReader.getProperty("lfc"));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        extentTest.info("Anasayfa Başarı ile yüklendi ");
 
-        // 1 Kullanıcı sıgnInUpButton a tıklar
-        lfcPages.signInButton.click();
+        // 2 Kullanıcı Login Sayfasına gider
+        wait.until(ExpectedConditions.elementToBeClickable(adminPages.signInButton)).click();
+        extentTest.info("Kullanıcı Login Sayfasına yönlendirildi ");
 
-        // 2 Login Sayfasında olduğunu doğrular
+        // 3 Kullanıcı Şifre sıfırlama sayfasına yönlendirilir
+        wait.until(ExpectedConditions.elementToBeClickable(adminPages.forgotPasswordButton)).click();
+        extentTest.info("Kullanıcı Şifre sıfırlama sayfasına yönlendirildi");
 
-        // 3 ForgotPassword Butona Tıklar
-        lfcPages.forgotPasswordButton.click();
+        // 4 Kullanıcı Mail Adresini gönderir
+        wait.until(ExpectedConditions.visibilityOf(adminPages.mailBox))
+                .sendKeys(ConfigReader.getProperty("userMail"));
+        extentTest.info("Geçerli mail adresi girildi");
+
+        // 5 Şifre sıfırlama linkine tıklar
+        adminPages.sendPassWordLinkButton.click();
+        extentTest.info("şifre sıfırlama Linkine tıklandı");
 
 
+        // 6 Kullanıcı alert yazısının çıkmasını bekler
+        wait.until(ExpectedConditions.alertIsPresent());
+        extentTest.info("Kullanıcı alert yazısının çıkmasını bekledi ");
 
-    }
-    @Test
-    public void TC_03(){
-        SoftAssert softAssert = new SoftAssert();
-        //1-)The user navigates to the page with the relevant URL.
-        //2) Confirms that it is on the homepage
-        //3-)Displays the 'Sign In' button in the header section
-        //4-)User clicks on the 'Sign In' button
-        //5)Confirms that the user is on the login page
-        //6-)'Forgot Password' link
-        //7-) Clicks on the 'Forgot Password' link
-        //8-)Confirms that you have been redirected to the 'Reset Password' page
-        //9-)User closes the page
-        lfcPages.signInButton.click();
-        lfcPages.forgotPasswordButton.click();
-        String expectedUrlIcerik = "reset/password" ;
-        String actualUrlIcerik = Driver.getDriver().getCurrentUrl();
+        // 7 Kullanıcı alert yazısını kaydeder
+        Alert alert = Driver.getDriver().switchTo().alert();
+        extentTest.info("Kullanıcı alert yazısını kaydetti");
+        String actualAlertText = alert.getText();
+        String expectedAlertText = "Password reset link has been sent to your email";
 
-        softAssert.assertTrue(actualUrlIcerik.contains(expectedUrlIcerik));
-        softAssert.assertAll();
 
-    }
-    @Test
-    public void TC_04(){
-        lfcPages.signInButton.click();
-        lfcPages.forgotPasswordButton.click();
-        lfcPages.logoButton.click();
+        // 8 Kullanıcı çıkan alert yazısı ile beklenen alert yazısını karşılaştırır
+        Assert.assertNotEquals(actualAlertText,
+                expectedAlertText, "Şifre sıfırlama linki gönderildi");
+        extentTest.pass("Şifre sıfırlama linki gönderilmedi");
+        alert.accept();
+        extentTest.fail("Şifre sıfırlama linki gönderilmedi - Beklenen: FAİL");
+
 
     }
+
 
 
 }
+

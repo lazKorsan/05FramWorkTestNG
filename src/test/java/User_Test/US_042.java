@@ -1,73 +1,72 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.annotations.Test;
 import utilities.*;
 
 public class US_042 {
-    LFCPages lfcPages = new LFCPages() ;
+    HeaderPages headerPages = new HeaderPages() ;
 
     //Bir yönetici olarak, admin paneldeki profil menüsüne erişebilmeli
     // ve profilime ait seçenekleri (Settings,  Edit Profil, Logout) görüntüleyebilmeliyim.
   @Test
   public void TC_01(){
       Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-      lfcPages.signInButton.click();
-      lfcPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
-      lfcPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
-      lfcPages.loginPageSigInButton.click();
+      headerPages.signInButton.click();
+      headerPages.mailBox.sendKeys(ConfigReader.getProperty("adminMail"));
+      headerPages.passwordBox.sendKeys(ConfigReader.getProperty("adminPassword"));
+      headerPages.loginPageSigInButton.click();
       ReusableMethods.bekle(2);
 
       TakeScreenShotsWithRedSquare.captureScreenshotWithRedBorder(
-              lfcPages.accountButton,
+              headerPages.accountButton,
               "accountButton");
 
-      lfcPages.accountButton.click();
+      headerPages.accountButton.click();
       ReusableMethods.bekle(1);
 
-      lfcPages.profileButton.click();
+      headerPages.profileButton.click();
 
       MultiScreenShootsMethods.getWebelementWithRedBorder(
               Driver.getDriver(),
               ConfigReader.getProperty("adminPage"),
-              lfcPages.profileButton,
-              lfcPages.settingsButton,
-              lfcPages.editProfileButton,
-              lfcPages.logOutButton
-
+              headerPages.profileButton,
+              headerPages.settingsButton,
+              headerPages.editProfileButton,
+              headerPages.logOutButton
       );
-      lfcPages.settingsButton.isDisplayed();
-      lfcPages.editProfileButton.isDisplayed();
-      lfcPages.logOutButton.isDisplayed();
+      headerPages.settingsButton.isDisplayed();
+      headerPages.editProfileButton.isDisplayed();
+      headerPages.logOutButton.isDisplayed();
 
-      lfcPages.settingsButton.isEnabled();
-      lfcPages.editProfileButton.isEnabled();
-      lfcPages.logOutButton.isEnabled();
+      headerPages.settingsButton.isEnabled();
+      headerPages.editProfileButton.isEnabled();
+      headerPages.logOutButton.isEnabled();
 
-      lfcPages.settingsButton.click();
+      headerPages.settingsButton.click();
       ReusableMethods.takeFullPageScreenshot("settingPage");
       ReusableMethods.bekle(1);
       Driver.getDriver().navigate().back();
 
       ReusableMethods.bekle(1);
-      lfcPages.profileButton.click();
-      lfcPages.editProfileButton.click();
+      headerPages.profileButton.click();
+      headerPages.editProfileButton.click();
       MultiScreenShootsMethods.getWebelementWithRedBorder(
               Driver.getDriver(),
               ConfigReader.getProperty("editPage"),
-              lfcPages.errorContainerWebelement
+              headerPages.errorContainerWebelement
       );
       ReusableMethods.bekle(1);
       Driver.getDriver().navigate().back();
 
-      lfcPages.profileButton.click();
-      lfcPages.logOutButton.click();
+      headerPages.profileButton.click();
+      headerPages.logOutButton.click();
 
       TakeScreenShootWithGreenLine.captureFullScreenWithGreenCheck(
-              lfcPages.accountButton,"accountButton"
+              headerPages.accountButton,"accountButton"
       );
 
-      lfcPages.signOutButton.click();
+      headerPages.signOutButton.click();
 
 
 

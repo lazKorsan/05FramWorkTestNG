@@ -1,6 +1,6 @@
 package tests.ZRecylbin;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,7 +14,7 @@ public class US_002_C {
     @DataProvider(name = "buttonProvider")
     public Object[][] buttonProvider() {
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        LFCPages page = new LFCPages();
+        HeaderPages page = new HeaderPages();
         return new Object[][]{
                 {page.logoButton, "Logo", "home"},
                 {page.signInButton, "Sign In", "loginPage"},

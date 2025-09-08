@@ -1,6 +1,6 @@
 package User_Test;
 
-import Pages.LFCPages;
+import Pages.HeaderPages;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -27,7 +27,7 @@ public class US_007_B extends TestBaseRapor {
     // üye kayıt formuna erisebilmek
     // ve üye kayıt formunu doldurup
     // kaydımı tamamlayabilmek istiyorum. (signUp)
-    LFCPages lfcPages = new LFCPages();
+    HeaderPages headerPages = new HeaderPages();
     //1. Sınıf adına sağ tıkla → Refactor → Rename (Shift+F6)
     //2. "loyalfriendcarePages" → "lfcPages" yaz
     //3. "Search in comments and strings" seçeneğini kapat (opsiyonel)
@@ -37,7 +37,7 @@ public class US_007_B extends TestBaseRapor {
     @BeforeMethod
     public void setUp() {
         Driver.getDriver().get(ConfigReader.getProperty("lfc"));
-        lfcPages = new LFCPages();
+        headerPages = new HeaderPages();
     }
 
     @AfterMethod
@@ -61,27 +61,27 @@ public class US_007_B extends TestBaseRapor {
         SoftAssert softAssert = new SoftAssert();
 
         // Kullanıcı SıgnUp Butonuna Basar
-        lfcPages.signUpButton.click();
+        headerPages.signUpButton.click();
         extentTest.info("Kullanıcı SıgnUp Butonuna Basar") ;
 
         // Kullanıcı usernameBox Kutusuna Kullanıcı adını girer
-        lfcPages.userNameBox.sendKeys(username);
+        headerPages.userNameBox.sendKeys(username);
         extentTest.info("") ;
 
         // Kullanıcı mailBox Kutusuna Mail adresini girer
-        lfcPages.mailBox.sendKeys(email);
+        headerPages.mailBox.sendKeys(email);
         extentTest.info("Kullanıcı mailBox Kutusuna Mail adresini girer") ;
 
         // Kullanıcı passwordBox Kutusuna şifresini girer
-        lfcPages.passwordBox.sendKeys(password);
+        headerPages.passwordBox.sendKeys(password);
         extentTest.info("Kullanıcı passwordBox Kutusuna şifresini girer") ;
 
         // Kullanıcı confirmPassword Kutusuna şifresini girer
-        lfcPages.confirmPasswordBox.sendKeys(confirmPassword);
+        headerPages.confirmPasswordBox.sendKeys(confirmPassword);
         extentTest.info("Kullanıcı confirmPassword Kutusuna şifresini girer") ;
 
         // Kullanıcı registerButonuna Tıklar ve Kayıt olur
-        lfcPages.registerButton.click();
+        headerPages.registerButton.click();
         extentTest.info("Kullanıcı registerButonuna Tıklar ve Kayıt olur") ;
 
         // Kullanıcı kayıt işleminden sonra ana sayfaya yönlendirildiğini doğrular
@@ -92,7 +92,7 @@ public class US_007_B extends TestBaseRapor {
 
         // Kullanıcı SignIn Butonunda Kullanıcı adını görür.
         String expectedUserNameText = username ;
-        String actualUserNameText = lfcPages.signInButton.getText() ;
+        String actualUserNameText = headerPages.signInButton.getText() ;
         softAssert.assertTrue(actualUserNameText.equals(expectedUserNameText),"Hesap oluşturma başarısız");
         extentTest.pass("Kullanıcı SignIn Butonunda Kullanıcı adını görür.") ;
 
@@ -101,7 +101,7 @@ public class US_007_B extends TestBaseRapor {
         extentTest.info("Kullanıcı anaSayfa ekran alıntısını alır");
 
         // Kullanıcı sıgnInButtonunun fotoğrafını alır
-        ReusableMethods.getWebElementScreenshot(lfcPages.signInButton, "doğrulama");
+        ReusableMethods.getWebElementScreenshot(headerPages.signInButton, "doğrulama");
         extentTest.info("Kullanıcı sıgnInButtonunun fotoğrafını alır ") ;
 
 
