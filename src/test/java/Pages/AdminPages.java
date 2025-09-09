@@ -336,6 +336,17 @@ public class AdminPages {
     @FindBy(xpath = "//tr[@role='row' and contains(@class, 'odd')]/td[3]")
     public WebElement departmentsTitle ;
 
+    public boolean accountButton() {
+        return accountButton.isDisplayed();
+    }
+
+    public boolean loginPageSignInButton() {
+        return loginPageSignInButton.isDisplayed();
+    }
+
+
+
+
 
 
 
